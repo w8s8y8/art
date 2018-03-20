@@ -4,9 +4,9 @@ import shutil
 release = True
 
 if __name__ == '__main__':
-    for roots, dir_names, file_names in os.walk(os.getcwd()):
-        for dir_name in dir_names:
-            shutil.rmtree(dir_name)
+    for file_name in os.listdir('.'):
+        if os.path.isdir(file_name) and file_name != '.git':
+            shutil.rmtree(file_name)
 
     for roots, dir_names, file_names in os.walk(os.getcwd()):
         for file_name in file_names:
