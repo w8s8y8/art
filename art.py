@@ -9,7 +9,7 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
             'METMODELS':'METMODELS', 'MM':'METMODELS', 'mm':'METMODELS',
             'TLE':'TheLifeErotic',
             'RA':'RylskyArt', 'RylskyArt':'RylskyArt',
-            'fj':'Femjoy','FJ':'Femjoy',
+            'fj':'Femjoy',
             'ST':'ST',
             'm':'MPLStudios',
             'w':'W4B',
@@ -19,13 +19,11 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
             'MX':'MetArtX','MAX':'MetArtX',
             'mn':'MyNakedDolls',
             'VT':'VivThomas',
-            'ze':'Zemani','Zm':'Zemani',
+            'ze':'Zemani',
             'MND':'MyNakedDolls',
             'ThisYearsModel':'ThisYearsModel',
             'MPLS':'MPLStudios',
-            'AlLynn':'AlexLynn',
-            'HA':'Hegre-Art',
-            'Nakety':'Nakety','Nk':'Nakety'
+            'AlLynn':'AlexLynn'
             }
 
 gfiles = ['!!!Readme.txt']
@@ -45,11 +43,7 @@ for file_name in os.listdir('.'):
         PITURE = ''
         MIDDEL = ''
 
-        result = re.search('-by-.*$', dir_name)
-        if result:
-            dlist = dir_name.replace(result.group(), '').split('_')
-        else:
-            dlist = dir_name.split('_')
+        dlist = dir_name.split('_')
         if len(dlist) == 2:
             DATE = dlist[0]
             klist = dlist[1].split('-')
@@ -91,8 +85,8 @@ for file_name in os.listdir('.'):
                     break;
 
         for x in gfiles:
-            print(x)
             if os.path.isfile(x):
+                print(f"Remove {x}")
                 os.remove(x)
 
         SIZE = SIZE / (1024 * 1024)
