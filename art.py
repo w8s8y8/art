@@ -91,11 +91,12 @@ for file_name in os.listdir('.'):
 
         SIZE = SIZE / (1024 * 1024)
         if SIZE < 1024:
-            SIZE = str(int(SIZE)) + 'MB'
+            SIZE = int(SIZE)
+            SIZE = f'{SIZE}MB'
 
-        NewFolderName = '%s %s [%dP] HIRES (%s) %s' % (MODEL, PITURE, COUNT, SIZE, DATE)
-        NewISO = '%s %s [%dP] (%s)' % (MODEL, PITURE, COUNT, SIZE);
-        NewVolume = '%s [%dP]' % (MODEL, COUNT);
+        NewFolderName = f'{MODEL} {PITURE} [{COUNT}P] HIRES ({SIZE}) {DATE}'
+        NewISO = f'{MODEL} {PITURE} [{COUNT}P] ({SIZE})'
+        NewVolume = f'{MODEL} [{COUNT}P]'
 
         print(NewFolderName)
         print(NewISO)
@@ -106,8 +107,8 @@ for file_name in os.listdir('.'):
 
         os.rename(dir_name, NewFolderName)
 
-        subprocess.Popen('C:\\Program Files (x86)\\UltraISO\\UltraISO.exe -imax -output ".\\%s" -file ".\\%s" -volume "%s" -joliet -jlong -lowercase' % (NewISO, NewFolderName, NewVolume))
+        subprocess.Popen(f'C:\\Program Files (x86)\\UltraISO\\UltraISO.exe -imax -output ".\\{NewISO}" -file ".\\{NewFolderName}" -volume "{NewVolume}" -joliet -jlong -lowercase')
 
-        shutil.copyfile(os.path.join(NewFolderName, 'cover.jpg'), NewFolderName + '.jpg')
+        shutil.copyfile(os.path.join(NewFolderName, 'cover.jpg'), f'{NewFolderName}.jpg')
 
         os.rename(zip_file_name, 'OLD_X_' + zip_file_name)
