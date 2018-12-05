@@ -5,26 +5,26 @@ import subprocess
 import shutil
 
 gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
-            'SexArt':'SexArt', 'SA':'SexArt',
-            'METMODELS':'METMODELS', 'MM':'METMODELS', 'mm':'METMODELS',
-            'TLE':'TheLifeErotic',
-            'RA':'RylskyArt', 'RylskyArt':'RylskyArt',
-            'fj':'Femjoy',
-            'ST':'ST',
-            'm':'MPLStudios',
-            'w':'W4B',
-            'EA':'ErroticaArchive',
-            'wp':'WowPorn',
-            'wg':'WowGirls',
-            'MX':'MetArtX','MAX':'MetArtX',
-            'mn':'MyNakedDolls',
-            'VT':'VivThomas',
-            'ze':'Zemani',
-            'MND':'MyNakedDolls',
-            'ThisYearsModel':'ThisYearsModel',
-            'MPLS':'MPLStudios',
-            'AlLynn':'AlexLynn'
-            }
+         'SexArt':'SexArt', 'SA':'SexArt',
+         'METMODELS':'METMODELS', 'MM':'METMODELS', 'mm':'METMODELS',
+         'TLE':'TheLifeErotic',
+         'RA':'RylskyArt', 'RylskyArt':'RylskyArt',
+         'fj':'Femjoy',
+         'ST':'ST',
+         'm':'MPLStudios',
+         'w':'W4B',
+         'EA':'ErroticaArchive',
+         'wp':'WowPorn',
+         'wg':'WowGirls',
+         'MX':'MetArtX','MAX':'MetArtX',
+         'mn':'MyNakedDolls',
+         'VT':'VivThomas',
+         'ze':'Zemani',
+         'MND':'MyNakedDolls',
+         'ThisYearsModel':'ThisYearsModel',
+         'MPLS':'MPLStudios',
+         'AlLynn':'AlexLynn'
+         }
 
 gfiles = ['!!!Readme.txt']
 
@@ -33,6 +33,10 @@ for file_name in os.listdir('.'):
     if file_names[1] == '.zip':
         zip_file_name = file_name
         dir_name = file_names[0]
+
+        result = re.search('-by.*', dir_name)
+        if result:
+            dir_name = dir_name.replace(result.group(), '')
 
         print('Extract', zip_file_name)
         with zipfile.ZipFile(zip_file_name, 'r') as z:
@@ -93,6 +97,10 @@ for file_name in os.listdir('.'):
         if SIZE < 1024:
             SIZE = int(SIZE)
             SIZE = f'{SIZE}MB'
+        else:
+            SIZE = SIZE / 1024
+            SIZE = round(SIZE, 2)
+            SIZE = f'{SIZE}GB'
 
         NewFolderName = f'{MODEL} {PITURE} [{COUNT}P] HIRES ({SIZE}) {DATE}'
         NewISO = f'{MODEL} {PITURE} [{COUNT}P] ({SIZE})'
