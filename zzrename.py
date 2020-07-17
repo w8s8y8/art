@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 
 release = True
@@ -8,9 +9,14 @@ if __name__ == '__main__':
         for file_name in file_names:
             v = os.path.splitext(file_name)
             if v[1] == '.zip':
-                v = v[0].split('_')
+                v = v[0]
+                result = re.search('-by.*', v)
+                if result:
+                    v = v.replace(result.group(), '')
+                print(v)
+                v = v.split('_')
                 s = '%s_%s-%s-%s' % (v[0], v[1], v[2], v[3])
                 v = v[4::]
                 s = '%s_%s-%s.zip' % (s, v.pop(), '-'.join(v))
                 print(s)
-                os.rename(file_name, s)
+                #os.rename(file_name, s)
