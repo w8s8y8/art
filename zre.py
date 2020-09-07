@@ -33,7 +33,7 @@ def re2015(file_name):
 
 
 def create(date, model, collection):
-    if 'presenting' in collection:
+    if 'presenting' in collection.lower():
         collection = 'presenting'
     return f'{date}_{collection}-{model}.zip'
 
