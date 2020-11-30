@@ -24,10 +24,11 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
          'MND':'MyNakedDolls',
          'ThisYearsModel':'ThisYearsModel',
          'MPLS':'MPLStudios',
-         'AlLynn':'AlexLynn'
+         'AlLynn':'AlexLynn',
+         'ED':'EternalDesire'
          }
 
-gfiles = ['!!!Readme.txt']
+gfiles = ['!!!Readme.txt', '!!!EroTelki.ORG.txt']
 
 
 def iso(args):
