@@ -10,10 +10,10 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
          'METMODELS':'METMODELS', 'MM':'METMODELS', 'mm':'METMODELS',
          'TLE':'TheLifeErotic',
          'RA':'RylskyArt', 'RylskyArt':'RylskyArt',
-         'fj':'Femjoy',
+         'fj':'Femjoy','FJ':'Femjoy',
          'ST':'ST',
          'm':'MPLStudios',
-         'w':'W4B',
+         'w':'W4B','W4B':'W4B',
          'EA':'ErroticaArchive',
          'wp':'WowPorn',
          'wg':'WowGirls',
@@ -25,7 +25,9 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
          'ThisYearsModel':'ThisYearsModel',
          'MPLS':'MPLStudios',
          'AlLynn':'AlexLynn',
-         'ED':'EternalDesire'
+         'ED':'EternalDesire',
+         'HF':'Heal-Fit',
+         'Nb':'Nubiles'
          }
 
 gfiles = ['!!!Readme.txt', '!!!EroTelki.ORG.txt']
