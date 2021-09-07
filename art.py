@@ -27,7 +27,15 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
          'AlLynn':'AlexLynn',
          'ED':'EternalDesire',
          'HF':'Heal-Fit',
-         'Nb':'Nubiles'
+         'Nb':'Nubiles',
+         'ST18':'Stunning18',
+         'Nk':'Nakety','Nakety':'Nakety',
+         'ErNd':'EuroNudes',
+         'MlAng':'MilenaAngel','MlAn':'MilenaAngel',
+         'Csm':'CosmidNet',
+         'HlFt':'HealFit',
+         'EroticBeauty':'EroticBeauty',
+         'GoddessNudes':'GoddessNudes'
          }
 
 gfiles = ['!!!Readme.txt', '!!!EroTelki.ORG.txt']
@@ -129,6 +137,7 @@ def process(file_name, executor):
     os.rename(dir_name, NewFolderName)
 
     os.rename(zip_file_name, 'OLD_X_' + zip_file_name)
+    #os.remove(zip_file_name)
 
     executor.submit(iso, [NewFolderName, NewISO, NewVolume])
 
