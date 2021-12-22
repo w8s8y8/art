@@ -35,7 +35,8 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
          'Csm':'CosmidNet',
          'HlFt':'HealFit',
          'EroticBeauty':'EroticBeauty',
-         'GoddessNudes':'GoddessNudes'
+         'GoddessNudes':'GoddessNudes',
+         'HA':'HEGRE'
          }
 
 gfiles = ['!!!Readme.txt', '!!!EroTelki.ORG.txt']
