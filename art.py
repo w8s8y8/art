@@ -83,32 +83,41 @@ def process(file_name, executor):
         MODEL = ' '.join(klist[1:]).upper()
         MIDDEL = '%s-%s%s%s-0' % (gmaps[dlist[0]], MODEL[0], PITURE[0], PITURE[-1])
 
-    relist = ('[0-9][0-9][0-9]\.jpg', 'cover\.jpg', 'cover-clean\.jpg',
-              'CS\.jpg', '\[Met-Art\].*\.jpg', '\.zip', '_lg\.jpg')
+    contexts = {'CX':('[0-9][0-9][0-9]\.jpg', '[0-9][0-9]\.jpg', '[0-9]\.jpg'),
+                'CO':('cover\.jpg', '_lg\.jpg', '\[Met-Art\].*\.jpg'),
+                'CC':('cover-clean\.jpg', 'clean-cover\.jpg'),
+                'CS':['CS\.jpg'],
+                'CZ':['\.zip'],
+                }
 
     COUNT = 0
     SIZE = 0
 
     os.chdir(dir_name)
     for file_name in os.listdir('.'):
-        for index, re_string in enumerate(relist):
-            result = re.search(re_string, file_name)
+        for key, value in contexts.items():
+            for index, re_string in enumerate(value):
+                result = re.search(re_string, file_name)
+                if result:
+                    if key == 'CX':
+                        SIZE += os.path.getsize(file_name)
+                        if index > 0:
+                            MIDDEL = MIDDEL + '0' * index
+                        os.rename(file_name, MIDDEL + result.group())
+                        COUNT = COUNT + 1
+                    elif key == 'CO':
+                        SIZE += os.path.getsize(file_name)
+                        os.rename(file_name, 'cover.jpg')
+                    elif key == 'CC':
+                        SIZE += os.path.getsize(file_name)
+                        os.rename(file_name, 'cover-clean.jpg')
+                    elif key == 'CS':
+                        os.rename(file_name, 'ContactSheet.jpg')
+                    else:
+                        os.remove(file_name)
+                    break
             if result:
-                if index == 0:
-                    SIZE += os.path.getsize(file_name)
-                    os.rename(file_name, MIDDEL + result.group())
-                    COUNT = COUNT + 1
-                elif index == 1 or index == 4 or index == 6:
-                    SIZE += os.path.getsize(file_name)
-                    os.rename(file_name, 'cover.jpg')
-                elif index == 2:
-                    SIZE += os.path.getsize(file_name)
-                    os.rename(file_name, 'cover-clean.jpg')
-                elif index == 3:
-                    os.rename(file_name, 'ContactSheet.jpg')
-                elif index == 5:
-                    os.remove(file_name)
-                break;
+                break
 
     for x in gfiles:
         if os.path.isfile(x):
