@@ -36,23 +36,20 @@ gmaps = {'MetArt':'MetArt', 'MA':'MetArt',
          'HlFt':'HealFit',
          'EroticBeauty':'EroticBeauty',
          'GoddessNudes':'GoddessNudes',
-         'HA':'HEGRE'
+         'HA':'HEGRE',
+         'DNA':'DENUDEART',
          }
 
 gfiles = ['!!!Readme.txt', '!!!EroTelki.ORG.txt']
 
 
-def iso(args):
-    NewFolderName, NewISO, NewVolume = args
-
+def make_iso(NewFolderName, NewISO, NewVolume):
     subprocess.Popen(f'C:\\Program Files (x86)\\UltraISO\\UltraISO.exe -imax -output ".\\{NewISO}" -file ".\\{NewFolderName}" -volume "{NewVolume}" -joliet -jlong -lowercase').communicate()
-
     shutil.copyfile(f'{NewFolderName}/cover.jpg', f'{NewFolderName}.jpg')
-
     shutil.rmtree(NewFolderName)
 
 
-def process(file_name, executor):
+def zip_process(file_name):
     zip_file_name = file_name
     dir_name = os.path.splitext(file_name)[0]
 
@@ -149,7 +146,7 @@ def process(file_name, executor):
     os.rename(zip_file_name, 'OLD_X_' + zip_file_name)
     #os.remove(zip_file_name)
 
-    executor.submit(iso, [NewFolderName, NewISO, NewVolume])
+    make_iso(NewFolderName, NewISO, NewVolume)
 
 
 if __name__ == '__main__':
@@ -157,5 +154,4 @@ if __name__ == '__main__':
     for file_name in os.listdir('.'):
         file_names = os.path.splitext(file_name)
         if file_names[1] == '.zip':
-            process(file_name, executor)
-
+            executor.submit(zip_process, file_name)

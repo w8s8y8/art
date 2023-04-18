@@ -16,8 +16,9 @@ if __name__ == '__main__':
     for root, dirs, files in os.walk(os.getcwd()):
         for file_name in files:
             if os.path.splitext(file_name)[1] == '.jpg':
-                m = os.path.join('E:\\', file_name[-14:-10:])
-                m = os.path.join(m, file_name[-9:-7:])
+                #m = os.path.join('F:/AZ/METART/METART-2021-12-IMAGE/', file_name[-14:-10:])
+                #m = os.path.join(m, file_name[-9:-7:])
+                m = 'F:/MPLS/MPLS-2022-04-IMAGE/'
                 if not os.path.exists(m):
                     os.makedirs(m)
                 n = file_name[:-15:].replace('HIRES ', '') + '.iso'
