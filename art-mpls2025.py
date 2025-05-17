@@ -11,6 +11,9 @@ def make_iso(NewFolderName, NewISO, NewVolume):
 
 
 if __name__ == '__main__':
+    cover = re.compile('cover_')
+    picture = re.compile('[0-9][0-9][0-9].jpg')
+
     for file_name in os.listdir('.'):
         if os.path.isdir(file_name):
 
@@ -28,10 +31,10 @@ if __name__ == '__main__':
             os.chdir(file_name)
             for pic_name in os.listdir('.'):
                 size += os.path.getsize(pic_name)
-                if re.search('cover', pic_name):
+                if cover.search(pic_name):
                     os.rename(pic_name, 'cover.jpg')
                 else:
-                    result = re.search('[0-9][0-9][0-9].jpg', pic_name)
+                    result = picture.search(pic_name)
                     os.rename(pic_name, mid + result.group())
                     count = count + 1
             os.chdir('..')
